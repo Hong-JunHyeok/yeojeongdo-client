@@ -9,6 +9,10 @@ export interface AuthState {
   loginError: AxiosError | null;
   loginLoading: boolean;
 
+  joinDone: boolean;
+  joinError: AxiosError | null;
+  joinLoading: boolean;
+
   loadMyInfoDone: boolean;
   loadMyInfoError: AxiosError | null;
   loadMyInfoLoading: boolean;

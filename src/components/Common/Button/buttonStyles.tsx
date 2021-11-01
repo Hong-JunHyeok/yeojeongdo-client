@@ -11,4 +11,5 @@ export const ButtonContainer = styled.button`
   background-color: ${MAIN_COLOR};
   cursor: pointer;
   color: white;
+  border: 2px solid ${MAIN_COLOR};
 `;

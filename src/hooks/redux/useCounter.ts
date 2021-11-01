@@ -5,12 +5,10 @@ import { ADD_COUNT, REMOVE_COUNT } from "store/reducers/counterReducer/actions";
 
 const useCounter = () => {
   const dispatch = useDispatch();
-  const { number } = useTypedSelector((state) => state.counter);
+  const { number } = useTypedSelector(state => state.counter);
 
   const increase = useCallback(() => {
-    dispatch({
-      type: ADD_COUNT,
-    });
+    dispatch({ type: ADD_COUNT });
   }, [dispatch]);
   const decrease = useCallback(() => {
     dispatch({

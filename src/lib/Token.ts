@@ -4,10 +4,10 @@ interface TokenData {
 }
 
 export class Token {
-  static getToken() {
+  static getToken(): TokenData {
     const tokenData = localStorage.getItem("token")
       ? JSON.parse(localStorage.getItem("token")!)
-      : {};
+      : null;
 
     return tokenData;
   }

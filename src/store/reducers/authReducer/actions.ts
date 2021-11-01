@@ -11,6 +11,16 @@ export const loginAsyncAction = createAsyncAction(
   LOG_IN_FAILURE
 )<any, AxiosResponse, AxiosError<any>>();
 
+export const JOIN_REQUEST = "auth/JOIN_REQUEST";
+export const JOIN_SUCCESS = "auth/JOIN_SUCCESS";
+export const JOIN_FAILURE = "auth/JOIN_FAILURE";
+
+export const joinAsyncAction = createAsyncAction(
+  JOIN_REQUEST,
+  JOIN_SUCCESS,
+  JOIN_FAILURE
+)<any, AxiosResponse, AxiosError<any>>();
+
 export const LOAD_MY_INFO_REQUEST = "auth/LOAD_MY_INFO_REQUEST";
 export const LOAD_MY_INFO_SUCCESS = "auth/LOAD_MY_INFO_SUCCESS";
 export const LOAD_MY_INFO_FAILURE = "auth/LOAD_MY_INFO_FAILURE";

@@ -1,6 +1,9 @@
 import produce from "immer";
 import { createReducer } from "typesafe-actions";
 import {
+  JOIN_FAILURE,
+  JOIN_REQUEST,
+  JOIN_SUCCESS,
   LOAD_MY_INFO_FAILURE,
   LOAD_MY_INFO_REQUEST,
   LOAD_MY_INFO_SUCCESS,
@@ -16,6 +19,10 @@ const initialState: AuthState = {
   loginError: null,
   loginLoading: false,
 
+  joinDone: false,
+  joinError: null,
+  joinLoading: false,
+
   loadMyInfoDone: false,
   loadMyInfoError: null,
   loadMyInfoLoading: false,
@@ -24,31 +31,48 @@ const initialState: AuthState = {
 };
 
 export default createReducer<AuthState, AuthActions>(initialState, {
-  [LOG_IN_REQUEST]: (state) =>
-    produce(state, (draft) => {
+  [LOG_IN_REQUEST]: state =>
+    produce(state, draft => {
       draft.loginDone = false;
       draft.loginError = null;
       draft.loginLoading = true;
     }),
   [LOG_IN_SUCCESS]: (state, action) =>
-    produce(state, (draft) => {
+    produce(state, draft => {
       draft.loginLoading = false;
       draft.loginDone = true;
     }),
   [LOG_IN_FAILURE]: (state, action) =>
-    produce(state, (draft) => {
+    produce(state, draft => {
       draft.loginLoading = false;
       draft.loginError = action.payload;
       draft.loginDone = false;
     }),
-  [LOAD_MY_INFO_REQUEST]: (state) =>
-    produce(state, (draft) => {
+  [JOIN_REQUEST]: state =>
+    produce(state, draft => {
+      draft.joinDone = false;
+      draft.joinError = null;
+      draft.joinLoading = true;
+    }),
+  [JOIN_SUCCESS]: (state, action) =>
+    produce(state, draft => {
+      draft.joinDone = true;
+      draft.joinLoading = false;
+    }),
+  [JOIN_FAILURE]: (state, action) =>
+    produce(state, draft => {
+      draft.joinDone = false;
+      draft.joinError = action.payload;
+      draft.joinLoading = false;
+    }),
+  [LOAD_MY_INFO_REQUEST]: state =>
+    produce(state, draft => {
       draft.loadMyInfoDone = false;
       draft.loadMyInfoError = null;
       draft.loadMyInfoLoading = true;
     }),
   [LOAD_MY_INFO_SUCCESS]: (state, action) =>
-    produce(state, (draft) => {
+    produce(state, draft => {
       draft.loadMyInfoLoading = false;
       draft.loadMyInfoDone = true;
 
@@ -56,13 +80,13 @@ export default createReducer<AuthState, AuthActions>(initialState, {
       draft.myInfo = action.payload.data.data;
     }),
   [LOAD_MY_INFO_FAILURE]: (state, action) =>
-    produce(state, (draft) => {
+    produce(state, draft => {
       draft.loadMyInfoLoading = false;
       draft.loadMyInfoError = action.payload;
       draft.loadMyInfoDone = false;
     }),
-  [LOG_OUT]: (state) =>
-    produce(state, (draft) => {
+  [LOG_OUT]: state =>
+    produce(state, draft => {
       draft.loginDone = false;
       draft.myInfo = null;
     }),

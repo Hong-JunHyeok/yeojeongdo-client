@@ -7,13 +7,13 @@ interface FormPropsType {
   onSubmit?: () => void;
   hasSubmit?: boolean;
   submitText?: string;
+  className?: string;
 }
 
 const Form: React.FC<FormPropsType> = ({ children, ...props }) => {
   const handleSubmit = useCallback(
     (e: FormEvent) => {
       e.preventDefault();
-      console.log("a");
       props.onSubmit
         ? props.onSubmit()
         : console.error("Unhandled submit function");
@@ -22,7 +22,7 @@ const Form: React.FC<FormPropsType> = ({ children, ...props }) => {
   );
 
   return (
-    <FormContainer onSubmit={handleSubmit}>
+    <FormContainer {...props} onSubmit={handleSubmit}>
       {children}
       {props.hasSubmit && <Button>{props.submitText}</Button>}
     </FormContainer>
