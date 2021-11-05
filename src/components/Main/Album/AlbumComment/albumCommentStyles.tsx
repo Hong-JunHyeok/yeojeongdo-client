@@ -15,7 +15,6 @@ export const CommentItemContainer = styled.li`
   padding: 8px 12px;
   margin: 1rem;
   display: flex;
-  flex-direction: column;
   .edit_buttons {
     display: flex;
     justify-content: flex-end;
@@ -31,6 +30,13 @@ export const CommentItemContainer = styled.li`
     }
     &_cancel {
     }
+  }
+  .profile {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    margin-right: 1rem;
+    cursor: pointer;
   }
   .edit_textarea {
     outline: none;

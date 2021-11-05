@@ -43,4 +43,5 @@ export interface AlbumState {
   isAlbumList: boolean;
 
   albumOpen: boolean;
+  albumsOpen: boolean;
 }

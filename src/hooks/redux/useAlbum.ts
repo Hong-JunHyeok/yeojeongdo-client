@@ -16,12 +16,13 @@ import {
   OPEN_ALBUM,
   OPEN_ALBUM_LIST,
   RESET_ALBUMS,
+  TOGGLE_ALBUMS,
 } from "store/reducers/albumReducer/actions";
 
 const useAlbum = () => {
   const dispatch = useDispatch();
 
-  const albumState = useTypedSelector(state => state.album);
+  const albumState = useTypedSelector((state) => state.album);
 
   const getAlbums = useCallback(
     (lastId?: number) => {
@@ -137,6 +138,12 @@ const useAlbum = () => {
     });
   }, [dispatch]);
 
+  const toggleAlbums = useCallback(() => {
+    dispatch({
+      type: TOGGLE_ALBUMS,
+    });
+  }, [dispatch]);
+
   return {
     albumState,
     openAlbum,
@@ -152,6 +159,7 @@ const useAlbum = () => {
     likeIncrement,
     likeDecrement,
     resetAlbum,
+    toggleAlbums,
   };
 };
 

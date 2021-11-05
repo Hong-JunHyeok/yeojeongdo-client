@@ -12,13 +12,15 @@ interface mapType {
 }
 
 const AlbumList = ({ albums, setAlbums }: mapType) => {
-  const { getAlbums, albumState } = useAlbum();
+  const { getAlbums, albumState, toggleAlbums } = useAlbum();
   const [lastId, setLastId] = useState<number>(0);
   const [ref, inView] = useInView();
 
   useEffect(() => {
     getAlbums(0);
   }, [getAlbums]);
+
+  const { albumsOpen } = albumState;
 
   useEffect(() => {
     if (inView && !albumState.loadAlbumsLoading) {
@@ -34,16 +36,18 @@ const AlbumList = ({ albums, setAlbums }: mapType) => {
 
   return (
     <AlbumListContainer>
-      <MenuHeader />
-      {albums.map((album, index) => (
-        <React.Fragment key={album.id}>
-          {albums.length - 1 === index ? (
-            <AlbumItem album={album} albumRef={ref} />
-          ) : (
-            <AlbumItem album={album} />
-          )}
-        </React.Fragment>
-      ))}
+      <div>
+        <MenuHeader />
+        {albums.map((album, index) => (
+          <React.Fragment key={album.id}>
+            {albums.length - 1 === index ? (
+              <AlbumItem album={album} albumRef={ref} />
+            ) : (
+              <AlbumItem album={album} />
+            )}
+          </React.Fragment>
+        ))}
+      </div>
     </AlbumListContainer>
   );
 };

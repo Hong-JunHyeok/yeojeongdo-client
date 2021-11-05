@@ -29,7 +29,7 @@ const Map = ({ albums, setAlbums }: mapType) => {
   const addressList: AddressItem = {};
 
   useEffect(() => {
-    albums.forEach(album => {
+    albums.forEach((album) => {
       if (!addressList[album.building.address]) {
         addressList[album.building.address] = [];
       }
@@ -37,14 +37,14 @@ const Map = ({ albums, setAlbums }: mapType) => {
     });
 
     for (const key in addressList) {
-      setMapAlbumList(albumList => [...albumList, addressList[key]]);
+      setMapAlbumList((albumList) => [...albumList, addressList[key]]);
     }
   }, [albums]);
 
   const { getAlbum, openAlbumList, openAlbum } = useAlbum();
 
   const handleClickMarker = useCallback(
-    markerIdList => {
+    (markerIdList) => {
       markerIdList[1] ? openAlbumList(markerIdList) : openAlbum();
       getAlbum(markerIdList[0]);
     },
@@ -57,10 +57,11 @@ const Map = ({ albums, setAlbums }: mapType) => {
       style={{
         // 지도의 크기
         flex: 3,
+        width: "100%",
         height: "100%",
       }}
       level={3}
-      onDragEnd={e =>
+      onDragEnd={(e) =>
         setCenterSearching({
           lat: e.getCenter().getLat(),
           lng: e.getCenter().getLng(),
@@ -80,7 +81,9 @@ const Map = ({ albums, setAlbums }: mapType) => {
           >
             <MarkerClusterer>
               <CustomOverlayMapContant
-                onClick={() => handleClickMarker(albums.map(album => album.id))}
+                onClick={() =>
+                  handleClickMarker(albums.map((album) => album.id))
+                }
               >
                 <img
                   width="50"
@@ -99,7 +102,7 @@ const Map = ({ albums, setAlbums }: mapType) => {
 
       <MarkerClusterer>
         {searchMapListState.searchMapList &&
-          searchMapListState.searchMapList.map(current => (
+          searchMapListState.searchMapList.map((current) => (
             <MapMarker
               position={{ lat: current.y, lng: current.x }}
               infoWindowOptions={{ className: "map_marker" }}

@@ -33,3 +33,6 @@ export const loadMyInfoAsyncAction = createAsyncAction(
 
 export const LOG_OUT = "auth/LOG_OUT";
 export const logoutAction = createAction(LOG_OUT)();
+
+export const CHANGE_NAME = "auth/CHANGE_NAME";
+export const changeName = createAction(CHANGE_NAME)();

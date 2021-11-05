@@ -7,10 +7,9 @@ import {
 } from "./albumCommentStyles";
 import DefaultProfile from "assets/images/default_profile.svg";
 import { createRef, useCallback, useEffect, useState, VFC } from "react";
-import ReactLoading from "react-loading";
 import useInput from "hooks/useInput";
 import useAuth from "hooks/redux/useAuth";
-import useUser from "hooks/redux/useUser";
+import { useHistory } from "react-router-dom";
 
 interface IAlbumCommentProps {
   commentInputRef: any;
@@ -20,7 +19,7 @@ const AlbumComment: VFC<IAlbumCommentProps> = ({ commentInputRef }) => {
   const { albumState, getComments, createComment, deleteComment, editComment } =
     useAlbum();
   const { authState } = useAuth();
-  const { userState } = useUser();
+  const history = useHistory();
 
   const editCommentRef = createRef<HTMLTextAreaElement>();
 
@@ -133,55 +132,69 @@ const AlbumComment: VFC<IAlbumCommentProps> = ({ commentInputRef }) => {
         <CommentListContainer>
           {albumState.comments?.map((comment) => (
             <CommentItemContainer key={comment.id}>
-              <span className="comment_userName">{comment.user.name}</span>
-              {isToggleMode &&
-              authState.myInfo?.id === comment.user.id &&
-              comment.id === editNumber ? (
-                <>
-                  <textarea
-                    ref={editCommentRef}
-                    className="edit_textarea"
-                    placeholder="수정할 텍스트를 입력하세요."
-                    value={editCommentText}
-                    onChange={onChangeEditCommentText}
-                  />
-                  <div className="edit_buttons">
-                    <button
-                      className="edit_buttons_edit"
-                      onClick={() => handleEditComment(comment.id)}
-                    >
-                      수정하기
-                    </button>
-                    <button
-                      onClick={() => toggleEditMode("CLOSE")}
-                      className="edit_buttons_cancel"
-                    >
-                      취소
-                    </button>
-                  </div>
-                </>
-              ) : (
-                <>
-                  <p className="comment_content">{comment.content}</p>
-                  {authState.myInfo?.id === comment.user.id && (
+              <img
+                src={
+                  authState.myInfo?.image
+                    ? `http://${comment.user?.image}`
+                    : DefaultProfile
+                }
+                alt=""
+                className="profile"
+                onClick={() => {
+                  history.push(`/user/${comment.user.id}`);
+                }}
+              />
+              <div>
+                <div className="comment_userName">{comment.user.name}</div>
+                {isToggleMode &&
+                authState.myInfo?.id === comment.user.id &&
+                comment.id === editNumber ? (
+                  <>
+                    <textarea
+                      ref={editCommentRef}
+                      className="edit_textarea"
+                      placeholder="수정할 텍스트를 입력하세요."
+                      value={editCommentText}
+                      onChange={onChangeEditCommentText}
+                    />
                     <div className="edit_buttons">
                       <button
-                        onClick={() => {
-                          toggleEditMode("OPEN");
-                          setEditNumber(comment.id);
-                          setEditCommentText(comment.content);
-                        }}
                         className="edit_buttons_edit"
+                        onClick={() => handleEditComment(comment.id)}
                       >
-                        수정
+                        수정하기
                       </button>
-                      <button onClick={() => handleDeleteComment(comment.id)}>
-                        삭제
+                      <button
+                        onClick={() => toggleEditMode("CLOSE")}
+                        className="edit_buttons_cancel"
+                      >
+                        취소
                       </button>
                     </div>
-                  )}
-                </>
-              )}
+                  </>
+                ) : (
+                  <>
+                    <p className="comment_content">{comment.content}</p>
+                    {authState.myInfo?.id === comment.user.id && (
+                      <div className="edit_buttons">
+                        <button
+                          onClick={() => {
+                            toggleEditMode("OPEN");
+                            setEditNumber(comment.id);
+                            setEditCommentText(comment.content);
+                          }}
+                          className="edit_buttons_edit"
+                        >
+                          수정
+                        </button>
+                        <button onClick={() => handleDeleteComment(comment.id)}>
+                          삭제
+                        </button>
+                      </div>
+                    )}
+                  </>
+                )}
+              </div>
             </CommentItemContainer>
           ))}
         </CommentListContainer>

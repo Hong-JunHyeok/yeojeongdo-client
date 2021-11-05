@@ -1,6 +1,6 @@
 import produce from "immer";
 import * as userActions from "./actions";
-import { action, createReducer } from "typesafe-actions";
+import { createReducer } from "typesafe-actions";
 import { UserState } from "./types";
 
 const initialState: UserState = {
@@ -146,6 +146,7 @@ export default createReducer<UserState>(initialState, {
     }),
   [userActions.CHANGE_NAME]: (state, action) =>
     produce(state, (draft) => {
+      console.log(state);
       if (draft.userInfo) {
         draft.userInfo.name = action.payload;
       }

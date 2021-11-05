@@ -24,13 +24,15 @@ const Main = () => {
     }
   }, [loadMyInfo, authState, history]);
 
+  const { albums } = albumState;
+
   return (
     <>
       <MainPageStyle>
         <Header />
         <MainContent>
-          <Map albums={albumState.albums} setAlbums={() => {}} />
-          <AlbumList albums={albumState.albums} setAlbums={() => {}} />
+          <Map albums={albums} setAlbums={() => {}} />
+          <AlbumList albums={albums} setAlbums={() => {}} />
         </MainContent>
         <CreateAlbumButton />
       </MainPageStyle>
