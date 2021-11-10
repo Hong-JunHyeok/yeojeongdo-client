@@ -59,7 +59,7 @@ const Map = ({ albums }: mapType) => {
         width: "100%",
         height: "100%",
       }}
-      level={3}
+      level={13}
       onDragEnd={(e) =>
         setCenterSearching({
           lat: e.getCenter().getLat(),

@@ -10,7 +10,7 @@ import { CreateState } from "./types";
 import { createReducer } from "typesafe-actions";
 
 const initalState: CreateState = {
-  LatLng: { lat: 35.6632143, lng: 128.4140176 },
+  LatLng: { lat: 35.9077340803244, lng: 128.61327008465764 },
 
   selectedMarker: undefined,
 

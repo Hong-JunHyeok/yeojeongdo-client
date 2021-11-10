@@ -1,5 +1,6 @@
 import Form from "components/Common/Form/Form";
 import Input from "components/Common/Input/Input";
+import useCreate from "hooks/redux/useCreate";
 import useSearch from "hooks/redux/useSearch";
 import useInput from "hooks/useInput";
 import { useCallback, useEffect } from "react";
@@ -16,6 +17,7 @@ const Search = () => {
   const valueList = searchMapListState.searchValue;
   const isModal = searchMapListState.isSearchModal;
   const [value, onChangeValue, setValue] = useInput(valueList[0]);
+  const { selectMarker } = useCreate();
 
   useEffect(
     (searchedValue?: string) => {
@@ -50,6 +52,11 @@ const Search = () => {
         lat: searchMapListState.automaticSearchList[0].y,
         lng: searchMapListState.automaticSearchList[0].x,
       });
+      selectMarker({
+        lat: searchMapListState.automaticSearchList[0].y,
+        lng: searchMapListState.automaticSearchList[0].x,
+        address_name: searchMapListState.automaticSearchList[0].address_name,
+      });
     },
     [
       searchMapListState.automaticSearchList,
@@ -57,6 +64,7 @@ const Search = () => {
       searchMap,
       setSearchModal,
       setCenterSearching,
+      selectMarker,
     ]
   );
   //검색창을 클릭하지 않았을 시 검색 모달을 닫는 로직

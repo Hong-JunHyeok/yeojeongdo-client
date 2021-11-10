@@ -34,7 +34,7 @@ const UserAlbums: React.FunctionComponent = () => {
 
   useEffect(() => {
     userInfo && getUserAlbums(userInfo.id, 0);
-  }, [getUserAlbums, userInfo]);
+  }, [userInfo]);
 
   useEffect(() => {
     if (inView && getUserAlbumsLoading) {
