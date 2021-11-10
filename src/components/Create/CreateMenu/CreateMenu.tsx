@@ -34,6 +34,13 @@ const CreateMenu = () => {
       !selectedMarker?.y ||
       !selectedMarker?.address_name
     ) {
+      console.log(
+        selectedMarker,
+        !memo.trim(),
+        !file,
+
+        !selectedMarker?.x || !selectedMarker?.y
+      );
       toast.error("누락된 값이 있습니다.");
       return;
     }
@@ -51,7 +58,7 @@ const CreateMenu = () => {
     setCreateAlbumDone(true);
   }, [file, memo, createAlbum, selectedMarker]);
 
-  const handleFileInput = useCallback((e) => {
+  const handleFileInput = useCallback(e => {
     const imageFileExtensions = [
       "image/apng",
       "image/bmp",
@@ -67,7 +74,7 @@ const CreateMenu = () => {
     const filesInArr: any[] = Array.from(e.target.files);
     let isValidImageType: boolean = true;
 
-    filesInArr.forEach((imageFile) => {
+    filesInArr.forEach(imageFile => {
       isValidImageType = imageFileExtensions.includes(imageFile.type);
     });
     if (!isValidImageType) {
@@ -79,7 +86,7 @@ const CreateMenu = () => {
       setFile(filesInArr);
 
       setPreview([
-        ...filesInArr.map((file) => {
+        ...filesInArr.map(file => {
           return URL.createObjectURL(file);
         }),
       ]);
@@ -131,7 +138,7 @@ const CreateMenu = () => {
                   <div className="slider">
                     <Slider {...settings}>
                       {preview[0] &&
-                        preview.map((view) => <img src={view} alt="" />)}
+                        preview.map(view => <img src={view} alt="" />)}
                     </Slider>
                     <div className="image-length">{"+" + preview.length}</div>
                   </div>

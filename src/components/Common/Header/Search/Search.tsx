@@ -53,8 +53,8 @@ const Search = () => {
         lng: searchMapListState.automaticSearchList[0].x,
       });
       selectMarker({
-        lat: searchMapListState.automaticSearchList[0].y,
-        lng: searchMapListState.automaticSearchList[0].x,
+        y: searchMapListState.automaticSearchList[0].y,
+        x: searchMapListState.automaticSearchList[0].x,
         address_name: searchMapListState.automaticSearchList[0].address_name,
       });
     },
