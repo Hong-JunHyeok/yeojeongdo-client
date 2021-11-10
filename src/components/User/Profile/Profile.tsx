@@ -14,6 +14,7 @@ import {
   ProfileImage,
   ProfileImageContainer,
   ProfileInfo,
+  UserAlbumContainer,
 } from "./profileStyles";
 import { editUserBirth, editUserName, editUserProfile } from "apis/userAPI";
 import { toast } from "react-toastify";
@@ -49,7 +50,7 @@ const Profile: React.VFC = () => {
   }, [userFollow, userInfo]);
 
   const handleToggleEdit = useCallback(() => {
-    setToggleEditContent((prev) => !prev);
+    setToggleEditContent(prev => !prev);
   }, []);
 
   const handleProfileInput = useCallback(
@@ -77,7 +78,7 @@ const Profile: React.VFC = () => {
           setToggleEditContent(false);
           setPrevProfileImage("");
         })
-        .catch((error) => {
+        .catch(error => {
           toast.error("에러가 발생했습니다.");
         });
     }
@@ -233,7 +234,7 @@ const Profile: React.VFC = () => {
           </>
         )}
       </ProfileContainer>
-      <UserAlbums />
+      <UserAlbumContainer></UserAlbumContainer>
     </>
   );
 };

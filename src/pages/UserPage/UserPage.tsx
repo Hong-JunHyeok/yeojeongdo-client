@@ -1,5 +1,5 @@
 import Header from "components/Common/Header/Header";
-import Profile from "components/User/Profile/Profile";
+import UserAlbums from "components/User/Profile/UserAlbums/UserAlbums";
 import useUser from "hooks/redux/useUser";
 import { useEffect } from "react";
 import { useParams } from "react-router";
@@ -19,7 +19,7 @@ const UserPage = () => {
     <>
       <UserPageContainer>
         <Header />
-        {userInfo && <Profile />}
+        {userInfo && <UserAlbums />}
       </UserPageContainer>
     </>
   );

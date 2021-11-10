@@ -1,4 +1,5 @@
 import { call, put } from "@redux-saga/core/effects";
+import { userAlbumsAPI } from "apis/albumAPI";
 import {
   followNumberAPI,
   getFollowState,
@@ -7,6 +8,8 @@ import {
 } from "apis/userAPI";
 import { AnyAction } from "redux";
 import {
+  GET_USER_ALBUMS_FAILURE,
+  GET_USER_ALBUMS_SUCCESS,
   GET_USER_FOLLOW_NUMBER_FAILURE,
   GET_USER_FOLLOW_NUMBER_SUCCESS,
   GET_USER_INFO_FAILURE,
@@ -81,4 +84,25 @@ export function* handleInitUserFollow(action: AnyAction): any {
     type: INIT_USER_FOLLOW,
     payload: isFollow.data.data,
   });
+}
+
+export function* handleGetUserAlbums(action: AnyAction): any {
+  try {
+    const userAlbums = yield call(
+      userAlbumsAPI,
+      action.payload.userIdx,
+      action.payload.lastIdx
+    );
+    console.log(userAlbums);
+
+    yield put({
+      type: GET_USER_ALBUMS_SUCCESS,
+      payload: userAlbums.data.data,
+    });
+  } catch (error: any) {
+    yield put({
+      type: GET_USER_ALBUMS_FAILURE,
+      payload: error.response.data,
+    });
+  }
 }

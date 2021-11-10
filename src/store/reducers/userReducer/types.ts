@@ -1,3 +1,5 @@
+import { Album } from "types/album";
+
 interface FollowNumbers {
   followerNum: number;
   followingNum: number;
@@ -33,4 +35,10 @@ export interface UserState {
   isFollow: boolean;
   followers: number;
   followings: number;
+
+  albums: Album[];
+
+  getUserAlbumsLoading: boolean;
+  getUserAlbumsError: null;
+  getUserAlbumsDone: boolean;
 }

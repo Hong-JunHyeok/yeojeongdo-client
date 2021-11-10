@@ -12,10 +12,9 @@ import { CustomOverlayMapContant } from "./mapStyles";
 
 interface mapType {
   albums: Album[];
-  setAlbums: React.Dispatch<React.SetStateAction<Album[]>>;
 }
 
-const Map = ({ albums, setAlbums }: mapType) => {
+const Map = ({ albums }: mapType) => {
   // const [latitude, setLatitude] = useState<number>(35.6632143);
   // const [longTitude, setLongTitude] = useState<number>(128.4140176);
   const { searchMapListState, setCenterSearching } = useSearch();

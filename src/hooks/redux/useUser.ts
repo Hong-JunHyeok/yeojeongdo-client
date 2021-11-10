@@ -2,6 +2,7 @@ import { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { useTypedSelector } from "store/reducers";
 import {
+  GET_USER_ALBUMS_REQUEST,
   GET_USER_INFO_ALL_REQUEST,
   INIT_USER_FOLLOW,
   INIT_USER_FOLLOW_REQUEST,
@@ -10,7 +11,7 @@ import {
 
 const useUser = () => {
   const dispatch = useDispatch();
-  const userState = useTypedSelector((state) => state.user);
+  const userState = useTypedSelector(state => state.user);
 
   const getUserInfoAll = useCallback(
     (userIdx: number) => {
@@ -26,7 +27,7 @@ const useUser = () => {
     (userIdx: number) => {
       dispatch({
         type: USER_FOLLOW,
-        payload: userIdx,
+        payload: { userIdx },
       });
     },
     [dispatch]
@@ -42,7 +43,17 @@ const useUser = () => {
     [dispatch]
   );
 
-  return { userState, getUserInfoAll, userFollow, getIsFollow };
+  const getUserAlbums = useCallback(
+    (userIdx: number, lastIdx: number) => {
+      dispatch({
+        type: GET_USER_ALBUMS_REQUEST,
+        payload: { userIdx, lastIdx },
+      });
+    },
+    [dispatch]
+  );
+
+  return { userState, getUserInfoAll, userFollow, getIsFollow, getUserAlbums };
 };
 
 export default useUser;

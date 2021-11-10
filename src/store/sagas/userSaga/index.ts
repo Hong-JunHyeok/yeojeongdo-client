@@ -3,6 +3,7 @@ import {
   watchGetUserInfo,
   watchUserFollow,
   watchInitUserFollow,
+  watchGetUserAlbums,
 } from "./watchers";
 
 export default function* userSaga() {
@@ -10,5 +11,6 @@ export default function* userSaga() {
     fork(watchGetUserInfo),
     fork(watchUserFollow),
     fork(watchInitUserFollow),
+    fork(watchGetUserAlbums),
   ]);
 }

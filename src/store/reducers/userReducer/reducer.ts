@@ -33,6 +33,11 @@ const initialState: UserState = {
   userInfo: null,
   followers: 0,
   followings: 0,
+
+  albums: [],
+  getUserAlbumsLoading: false,
+  getUserAlbumsError: null,
+  getUserAlbumsDone: false,
 };
 
 export default createReducer<UserState>(initialState, {
@@ -146,7 +151,6 @@ export default createReducer<UserState>(initialState, {
     }),
   [userActions.CHANGE_NAME]: (state, action) =>
     produce(state, (draft) => {
-      console.log(state);
       if (draft.userInfo) {
         draft.userInfo.name = action.payload;
       }
@@ -156,5 +160,27 @@ export default createReducer<UserState>(initialState, {
       if (draft.userInfo) {
         draft.userInfo.birthDay = action.payload;
       }
+    }),
+
+  [userActions.GET_USER_ALBUMS_REQUEST]: (state, action) =>
+    produce(state, (draft) => {
+      draft.albums = [];
+      draft.getUserAlbumsLoading = true;
+      draft.getUserAlbumsDone = false;
+      draft.getUserAlbumsError = null;
+    }),
+  [userActions.GET_USER_ALBUMS_SUCCESS]: (state, action) =>
+    produce(state, (draft) => {
+      draft.albums = action.payload;
+      draft.getUserAlbumsLoading = false;
+      draft.getUserAlbumsDone = true;
+      draft.getUserAlbumsError = null;
+    }),
+  [userActions.GET_USER_ALBUMS_FAILURE]: (state, action) =>
+    produce(state, (draft) => {
+      draft.albums = [];
+      draft.getUserAlbumsLoading = false;
+      draft.getUserAlbumsDone = false;
+      draft.getUserAlbumsError = action.payload;
     }),
 });

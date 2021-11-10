@@ -33,6 +33,10 @@ export const GET_USER_FOLLOWINGS_SUCCESS =
 export const GET_USER_FOLLOWINGS_FAILURE =
   "user/GET_USER_FOLLOWINGS_FAILURE" as const;
 
+export const GET_USER_ALBUMS_REQUEST = "user/GET_USER_ALBUMS_REQUEST" as const;
+export const GET_USER_ALBUMS_SUCCESS = "user/GET_USER_ALBUMS_SUCCESS" as const;
+export const GET_USER_ALBUMS_FAILURE = "user/GET_USER_ALBUMS_FAILURE" as const;
+
 export const USER_FOLLOW = "user/USER_FOLLOW" as const;
 export const USER_FOLLOW_SUCCESS = "user/USER_FOLLOW_SUCCESS" as const;
 export const USER_FOLLOW_FAILURE = "user/USER_FOLLOW_FAILURE" as const;
@@ -75,4 +79,10 @@ export const userFollowAsyncAction = createAsyncAction(
   USER_FOLLOW,
   USER_FOLLOW_SUCCESS,
   USER_FOLLOW_FAILURE
+)<any, AxiosResponse, AxiosError>();
+
+export const getUserAlbumsAsynAction = createAsyncAction(
+  GET_USER_ALBUMS_REQUEST,
+  GET_USER_ALBUMS_SUCCESS,
+  GET_USER_FOLLOWERS_FAILURE
 )<any, AxiosResponse, AxiosError>();

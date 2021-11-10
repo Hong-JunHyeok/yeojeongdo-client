@@ -51,6 +51,9 @@ export const AlbumViewContainer = styled.div`
       align-items: center;
       .slick-list {
         width: 600px;
+        .slick-slide {
+          max-height: 600px;
+        }
       }
       .slick-track {
         display: flex;

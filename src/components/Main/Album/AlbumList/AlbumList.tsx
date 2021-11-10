@@ -8,11 +8,10 @@ import { AlbumListContainer } from "./albumListStyles";
 
 interface mapType {
   albums: Album[];
-  setAlbums: React.Dispatch<React.SetStateAction<Album[]>>;
 }
 
-const AlbumList = ({ albums, setAlbums }: mapType) => {
-  const { getAlbums, albumState, toggleAlbums } = useAlbum();
+const AlbumList = ({ albums }: mapType) => {
+  const { getAlbums, albumState } = useAlbum();
   const [lastId, setLastId] = useState<number>(0);
   const [ref, inView] = useInView();
 

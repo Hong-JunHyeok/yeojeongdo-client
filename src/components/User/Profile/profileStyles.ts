@@ -38,7 +38,7 @@ export const ProfileImage = styled.div<IProfileImage>`
   border-radius: 50%;
   background-position: center;
   background-size: cover;
-  ${(props) =>
+  ${props =>
     props.profile
       ? css`
           background-image: url(${props.profile});
@@ -108,4 +108,9 @@ export const EditUserInfo = styled.div`
     display: flex;
     flex-direction: column;
   }
+`;
+
+export const UserAlbumContainer = styled.div`
+  width: 100%;
+  display: flex;
 `;
