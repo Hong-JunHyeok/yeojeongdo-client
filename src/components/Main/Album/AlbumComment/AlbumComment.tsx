@@ -135,7 +135,7 @@ const AlbumComment: VFC<IAlbumCommentProps> = ({ commentInputRef }) => {
               <img
                 src={
                   authState.myInfo?.image
-                    ? `http://${comment.user?.image}`
+                    ? `${comment.user?.image}`
                     : DefaultProfile
                 }
                 alt=""
@@ -203,7 +203,7 @@ const AlbumComment: VFC<IAlbumCommentProps> = ({ commentInputRef }) => {
         <img
           src={
             authState.myInfo?.image
-              ? `http://${authState.myInfo?.image}`
+              ? `{authState.myInfo?.image}`
               : DefaultProfile
           }
           alt=""

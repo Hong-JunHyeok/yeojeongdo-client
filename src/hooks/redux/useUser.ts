@@ -11,7 +11,7 @@ import {
 
 const useUser = () => {
   const dispatch = useDispatch();
-  const userState = useTypedSelector(state => state.user);
+  const userState = useTypedSelector((state) => state.user);
 
   const getUserInfoAll = useCallback(
     (userIdx: number) => {
@@ -27,7 +27,7 @@ const useUser = () => {
     (userIdx: number) => {
       dispatch({
         type: USER_FOLLOW,
-        payload: { userIdx },
+        payload: userIdx,
       });
     },
     [dispatch]

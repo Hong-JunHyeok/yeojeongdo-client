@@ -65,10 +65,10 @@ const AlbumView = () => {
         profileImg: string;
       }
       getLikeUsers(album?.id)
-        .then(response => {
+        .then((response) => {
           const likeList = response.data.data as LikeUserInterface[];
           if (authState.myInfo?.id) {
-            likeList.forEach(likeUser => {
+            likeList.forEach((likeUser) => {
               if (likeUser.id === authState.myInfo?.id) {
                 setIsLiked(true);
                 return false;
@@ -77,7 +77,7 @@ const AlbumView = () => {
             });
           }
         })
-        .catch(error => toast.error(error.response.data));
+        .catch((error) => toast.error(error.response.data));
     }
   }, [album?.id, authState.myInfo?.id]);
 
@@ -103,7 +103,7 @@ const AlbumView = () => {
               <Button
                 onClick={() => {
                   getAlbum(albumState.albumList[page - 1]);
-                  setPage(prev => prev - 1);
+                  setPage((prev) => prev - 1);
                   setIsLiked(false);
                 }}
               >
@@ -113,8 +113,8 @@ const AlbumView = () => {
               <div></div>
             )}
             <Slider {...settings}>
-              {album?.photo.map(image => (
-                <img src={`http://${image}`} alt="" />
+              {album?.photo.map((image) => (
+                <img src={`${image}`} alt="" />
               ))}
             </Slider>
             {albumState.isAlbumList &&
@@ -122,7 +122,7 @@ const AlbumView = () => {
               <Button
                 onClick={() => {
                   getAlbum(albumState.albumList[page + 1]);
-                  setPage(prev => prev + 1);
+                  setPage((prev) => prev + 1);
                   setIsLiked(false);
                 }}
               >

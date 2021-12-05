@@ -13,6 +13,7 @@ export const AdContext = styled.div`
   & > img {
     width: 225px;
     height: 276px;
+    object-fit: cover;
   }
   & > div {
     width: 240px;

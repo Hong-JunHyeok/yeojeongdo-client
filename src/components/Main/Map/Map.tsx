@@ -84,12 +84,7 @@ const Map = ({ albums }: mapType) => {
                   handleClickMarker(albums.map((album) => album.id))
                 }
               >
-                <img
-                  width="50"
-                  height="50"
-                  src={`http://${album.photo}`}
-                  alt=""
-                />
+                <img width="50" height="50" src={`${album.photo}`} alt="" />
                 {albums.length > 1 && (
                   <div className="image-length"> {"+" + albums.length}</div>
                 )}

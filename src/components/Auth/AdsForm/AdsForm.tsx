@@ -7,7 +7,7 @@ const AdsForm: React.VFC = () => {
     <AdsContainer>
       <AdContext>
         <img
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1QbRaZliUWCxisDi-ALqAG6EvQsKiFF_7Vw&usqp=CAU"
+          src="https://api.cdn.visitjeju.net/photomng/imgpath/201909/21/684d77d1-246c-4155-b670-61b83db702c9.JPG"
           alt=""
         />
         <div>

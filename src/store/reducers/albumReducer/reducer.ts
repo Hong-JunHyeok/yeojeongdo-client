@@ -142,6 +142,9 @@ export default createReducer<AlbumState>(initalState, {
     produce(state, (draft) => {
       draft.createCommentLoading = false;
       draft.createCommentDone = true;
+      if (draft.album) {
+        draft.album.commentNum++;
+      }
     }),
   [CREATE_COMMENT_FAILURE]: (state, action) =>
     produce(state, (draft) => {
@@ -159,6 +162,9 @@ export default createReducer<AlbumState>(initalState, {
     produce(state, (draft) => {
       draft.deleteCommentLoading = false;
       draft.deleteCommentDone = true;
+      if (draft.album) {
+        draft.album.commentNum--;
+      }
     }),
   [DELETE_COMMENT_FAILURE]: (state, action) =>
     produce(state, (draft) => {

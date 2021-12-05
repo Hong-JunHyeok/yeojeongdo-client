@@ -28,7 +28,7 @@ const JoinForm = () => {
       name,
     };
     if (joinValidation(joinData)) {
-      // TODO : HTTP connection
+      console.log(joinData);
       join(joinData);
     }
   }, [id, password, confirmPassword, birth, name, sex, join]);
